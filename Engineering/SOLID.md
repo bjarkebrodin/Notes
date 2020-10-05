@@ -1,8 +1,15 @@
 ---
 title: SOLID Principles of OO design
 tags: solid, rigidity, fragility, liskov substition, 
-substitution principle
+substitution principle, dependency inversion, open/closed,
+dependency management.
 ---
+
+TL;DR: Classes should have one reason to change, be open
+for extension but closed for modification; derived classes
+should be usable through superclass interfaces; interfaces
+should be segregated reasonably and dependency on implementation
+instead of interface is bad.
 
 ## What is SOLID?
 
@@ -64,19 +71,26 @@ same classes.
 
 Open for extension; behaviour can be extended.
 
-Closed for modification; existing code should not be modified when added.
+Closed for modification; existing code should not be 
+modified when added.
 
 ## Liskov substitution principle
 
-Where a superclass is expected a subclass can be provided.
+Derived classes should be usable through the base class 
+interface, without the need for the user to know the 
+difference.
 
 ## Interface segregation principle
 
+Many client-specific interfaces are better than one
+general-purpose interface.
+
 ## Dependency inversion principle
 
+Depend upon abstractions not concretions.
 
-## Sources
+---
+
+## Resources
 
 [Uncle Bob on SOLID](https://www.youtube.com/watch?v=TMuno5RZNeE)
-
-<!-- Slides 2/10/2020 -->

@@ -1,6 +1,6 @@
 ---
 title: REST - Representational State Transfer
-tags: REST, API
+keywords: REST, API
 ---
 
 TL;DR: REST is an architectural style for handling state in 

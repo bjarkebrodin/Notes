@@ -1,6 +1,6 @@
 ---
 title: SOLID Principles of OO design
-tags: solid, rigidity, fragility, liskov substition, 
+keywords: solid, rigidity, fragility, liskov substition, 
 substitution principle, dependency inversion, open/closed,
 dependency management.
 ---

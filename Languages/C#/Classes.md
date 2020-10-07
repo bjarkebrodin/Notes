@@ -3,7 +3,7 @@ title: Classes & OOP in C#
 keywords: class
 ---
 
-## Classes
+# Classes
 
 Basic c# class declaration as
   `class <identifier> { <members> }`

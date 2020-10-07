@@ -80,6 +80,11 @@ string does not support `<` and `>` for comparison.
 
 ## Arrays
 
+```cs
+int[] nums = {1,2,3};
+int[] nums = new int[3];
+```
+
 C# support normal C-esque array syntax, and also a slightly lighter version.
 
 ```cs

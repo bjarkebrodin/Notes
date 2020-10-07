@@ -28,11 +28,15 @@ Methods in upper CamelCase
 
 Properties in upper CamelCase
 
-Fields in _ prefixed _camelCase
+Private fields in _ prefixed _camelCase
+
+Variables and fields in normal camelCase
 
 Opening curlybrackets on newlines
 
 Classnames in CamelCase
+
+Interfaces in upper CamelCase prefixed with an I
 
 
 ## Layout conventions ([See Microsoft Guide](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions))

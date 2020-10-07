@@ -71,3 +71,76 @@ finally
   ...
 }
 ```
+
+### If/else
+
+```cs
+if ()
+{
+  ...
+}
+else if ()
+{
+  ...
+}
+else
+{
+  ...
+}
+```
+
+### Switching
+
+Note that cases need to be mutually exclusive, or the compiler will be unhappy.
+
+Standard c# switch
+
+```cs
+switch (variable)
+{
+  case valueA:
+    ...
+    break;
+  case valueB:
+    ...
+    break;
+  default:
+    ...
+    break;
+}
+```
+
+Fallthrough c# switch
+
+```cs
+switch (variable)
+{
+  case valueA:
+  case valueB:
+    ...
+    break;
+  default:
+    ...
+    break;
+}
+```
+
+c# switch with typing and `when`
+
+```cs
+switch (someObject)
+{
+  case int num when num >= 0:
+    DoStuffWith(num);
+    break;
+  case int num when num < 0:
+    DoOtherStuffWith(num);
+    break;
+  case string str when str.Length > 0:
+    DoStringThing(str);
+    break;
+  default:
+    ...
+    break;
+}
+```

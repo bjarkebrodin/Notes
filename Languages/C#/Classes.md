@@ -3,7 +3,7 @@ title: Classes & OOP in C#
 keywords: class
 ---
 
-## Classes
+# Classes
 
 Basic c# class declaration as
   `class <identifier> { <members> }`
@@ -36,9 +36,41 @@ partial   // only part of class declaration
 
 ### Constraints & inheritance
 
+
+_Inheritance_ is done quite simply in C#, consider below snippet.
+
 ```cs
-MyClass : SomeSuperClass, ISomeInterface {...}
+class MyClass<T> : BaseClass, ISomeIFace, IOtherIFace
+    where T : IDisposable
+{
+  MyClass(int someParam) : base(someParam) { ... } 
+}
 ```
+
+Inherited and accessible class methods and properties can be accessed using the `base` prefix.
+
+_Covariance_ permits methods to have a more derived return type than the type argument.
+Because `IEnumerable<T>` is covariant, this assignment is valid. `IEnumerable<ICollection<object>> cols = new List<List<object>>();`
+
+However since `ICollection<T>` is NOT covariant, we cannot do the following variation of above assignment (`string` in place of `object`). `IEnumerable<ICollection<object>> cols = new List<List<string>>();`
+
+Looking at the interface declarations
+`IEnumerable<out T>`, `ICollection<T>` we notice the `out` in the ienumable interface, this in fact denotes that it is covariant.
+
+_Contravariance_ permits methods to have a more derived argument type than the type argument of the assignment. Because `IComparer<T>` is contravariant, this assignment is valid
+
+```cs
+IComparer<string> c = new Comparer<object>();
+
+private class Comparer<T> : IComparer<T>
+{
+  public int Compare(T x, T y)
+    => x.GetHashCode() - y.GetHashCode();
+}
+```
+
+notice that `object` is less derived than `string`. For any non-contravariant generic this would not be allowed. Contravariance is denoted by the `in` in the `<in T>` type parameter declaration.
+
 
 ### Encapsulation
 
@@ -57,9 +89,3 @@ Field initializers run before constructors.
 ### Constant
 
 Statically evaluated, value is literally substituted at compile-time. May be any built in numerical type.
-
-## Inheritance
-
-## Polymorphism
-
-## Misc: enums, structs & unions

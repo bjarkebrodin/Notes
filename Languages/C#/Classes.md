@@ -36,7 +36,9 @@ partial   // only part of class declaration
 
 ### Constraints & inheritance
 
-
+```cs
+MyClass : SomeSuperClass, ISomeInterface {...}
+```
 
 ### Encapsulation
 

@@ -7,14 +7,8 @@ tags: relational database normalization, 1nf, 2nf, 3nf, bcnf
 
 When we revise a relational data model, such that redundancies are eliminated, we say that we are _normalizing_ the model. The goal of this is to prevent _anomalies_ during database operations. 
 
-Consider for example if we a relational model like this;
-
-CPR | Birthdate | Birthyear
--|-|-
-
-
-where only CPR is key, we notice that anomalies may arise when inserting or updating. We can legally insert e.g. (2211904993,220312,2010), but this data is however quite nonsense, since birthyear is dependent on birthdate and birthdate is dependent on CPR.
-
+Consider for example if we a have relational model like this (CPR,Birthdate,Birthyear). Where only CPR is key, we notice that anomalies may arise when inserting or updating. We can legally insert e.g. (2211904993,220312,2010), but this data is however quite nonsense, since birthyear is dependent on birthdate and birthdate is dependent on CPR.
+kjkj
 We categorize the steps of normalization by defining different degrees of normalized forms, 1NF, 2NF, 3NF and BCNF. To define each of these we need some definitions
 
 ## Functional Dependency
@@ -26,6 +20,8 @@ A functional dependency $X \rightarrow Y$ is a _full functional dependency_ iff.
 If there is a functional dependency $X \rightarrow Y$ and a functional dependency $Y \rightarrow Z$, where $Y$ is not a subset of any key, we say that there is a transitive dependency $X \rightarrow Z$.
 
 For a functional dependency $X \rightarrow Y$ we say that it is a _trivial functional dependency_ if $X \subseteq Y$.
+
+There is a _multi-valued dependency_ $X \rightarrow \rightarrow Y$ iff. each $X$ value exactly determines a set of $Y$ values independently of the other attribues.
 
 ## Prime attribute type
 
@@ -49,4 +45,8 @@ Condition: satisfies 2NF and no non-prime attribute is transitively dependent on
 
 ### BCNF - Boyce-Codd normal form
 
-Condition: for each non-trivial functional dependency $X \rightarrow Y$, $X$ is a superkey.
+Condition: satisfies 3NF and for each non-trivial functional dependency $X \rightarrow Y$, $X$ is a superkey.
+
+### 4NF - Fourth normal form
+
+Condition: satisfies BCNF and for every non-trivial multivalued dependencies $X \rightarrow \rightarrow Y$, $X$ is a superkey.

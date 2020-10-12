@@ -35,18 +35,51 @@ Starting from an arbitrary model, we can apply _normal form tests_ sequentially,
 
 Condition: every attribute type must be atomic and single-valued. That is: no attribute type can be composite or multi-valued.
 
+I.e. a relation $R$ is in 1NF iff. there are no complex attributes
+$1NF(R) \iff \neg \exists A \in R ( Complex(A) )$
+A relation $R$ is NOT in 1NF if it has complex attributes.
+
+Example of 1NF:
+R = (A,B,C), A,B,C are non-complex, AB is key, A -> C
+
+Example of NOT 1NF:
+R = (A,B), B is composite or multi-valued
+
 ### 2NF - Second normal form
 
 Condition: satisfies 1NF and every non-prime attribute is fully functionally dependent on any key.
+
+I.e. a relation $R$ is in 2NF iff. it is in 1NF and every attribute that is not part of a key is fully dependent on any key. To reiterate, if any non-prime attribute is dependent on a key $K$, where the removal of any attribute from $K$ does NOT break the dependency, then $R$ is not in 2NF.
+
+Example of 2NF:
+R = (A,B,C), A is key, B is key, A -> C
+
+Example of NOT 2NF:
+R = (A,B,C), AB is key, A -> C
 
 ### 3NF - Third normal form
 
 Condition: satisfies 2NF and no non-prime attribute is transitively dependent on the primary key.
 
+Example of 3NF:
+R = (A,B,C), A is key, A -> B, A -> C
+
+Example of NOT 3NF:
+R = (A,B,C), A is key, A -> B, B -> C
+
 ### BCNF - Boyce-Codd normal form
 
 Condition: satisfies 3NF and for each non-trivial functional dependency $X \rightarrow Y$, $X$ is a superkey.
 
-### 4NF - Fourth normal form
+I.e whenever there is a nontrivial dependency to any attribute $X \rightarrow Y$, then $X$ is a superkey.
+
+Example of BCNF:
+R = (A,B,C,D), A is key, A -> B, A -> C, A -> D, AB -> D
+
+Example of NOT BCNF:
+R = (A,B,C,D), AB is key, A -> C, AB -> D
+(A is not a superkey, thus A -> C breaks BCNF)
+
+### 4NF - Fourth normal form (extracurricular?)
 
 Condition: satisfies BCNF and for every non-trivial multivalued dependencies $X \rightarrow \rightarrow Y$, $X$ is a superkey.

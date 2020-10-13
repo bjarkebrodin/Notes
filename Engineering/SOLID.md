@@ -89,8 +89,6 @@ general-purpose interface.
 
 Depend upon abstractions not concretions.
 
----
-
 ## Resources
 
 [Uncle Bob on SOLID](https://www.youtube.com/watch?v=TMuno5RZNeE)

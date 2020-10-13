@@ -71,6 +71,52 @@ private class Comparer<T> : IComparer<T>
 
 notice that `object` is less derived than `string`. For any non-contravariant generic this would not be allowed. Contravariance is denoted by the `in` in the `<in T>` type parameter declaration.
 
+Properties can be accessed like fields, but are not variables, so they cannot be used as `ref` and `out` variables.
+
+<!-- TL;DR -->
+
+```cs
+using static System.Reflection.MethodBase;
+using System;
+
+public class C {
+  // If you want to manage internal data
+  private int _number;
+  public int Number
+  {
+    get { return _number; }
+    set { _number = value; }
+  }
+
+  // Or alternatively simply use an auto field
+  public string Name { get; set; }
+
+  // Expression bodied readonly property
+  private readonly string _secret;
+  public string Secret => _secret;
+
+  // Reasonable actual use
+  private int _phone;
+  public int Phone
+  {
+    get => _phone;
+    set
+    {
+      ValidatePhoneNum(ref value);
+      _phone = value;
+    }
+  }
+
+  private void ValidatePhoneNum(ref int num)
+  {
+    if ( num > int.MaxValue || num < 0 )
+    {
+      throw new ArgumentException( $"invalid phone number in {GetCurrentMethod().ToString()}" );
+    }
+  }
+}
+```
+
 
 ### Encapsulation
 
@@ -89,3 +135,67 @@ Field initializers run before constructors.
 ### Constant
 
 Statically evaluated, value is literally substituted at compile-time. May be any built in numerical type.
+
+### Properties
+
+Properties can be accessed like fields, but are not variables, so they cannot be used as `ref` and `out` variables. In scope of the setter is 
+a `value` keyword, which evaluates to the argument passed to the assignment
+of the property : `Somebody.Phone = value`.
+
+```cs
+private int _phone;
+public int Phone
+{
+  get => _phone;
+  set
+  {
+    ValidatePhoneNum(value);
+    _phone = value;
+  }
+}
+```
+
+## Simple Inheritance structure
+
+```cs
+class A
+{
+  void Do()
+  {
+    Console.WriteLine("Hello from A");
+  }
+}
+
+class B : A {}
+
+class Demo
+{
+  public static void Main(string[] args)
+  {
+    A b = new B();
+    b.Do(); // "Hello from A"
+  }
+}
+```
+
+### Hiding
+
+Class `B` could hide the `Do()` method by explicitly declaring a different method of the same signature.
+
+### Casting
+
+Upcasting can be done according to the liskov substitution principle. Example: `A b = new B();`
+
+Downcasting can be done primarily in two ways: by explicit type casting or by using the `as` keyword.
+
+```cs
+A a = new B();
+B b = (B)b; // Explicit type downcast
+// --- or ---
+A a = new B();
+B b = a as B;
+```
+
+The difference between explicit cast and the `as` operator is the property of which action is taken upon failure. If `a` is indeed an instance of class `B` then the explicit cast will fail and crash, where the `as` operator will simply make the variable `null` instead.
+
+The `is` operator is the cs equivalent of java `instanceof`. The is operator can also   

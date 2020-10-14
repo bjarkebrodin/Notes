@@ -3,7 +3,6 @@ title: Object oriented analysis & design
 keywords:
 ---
 
-
 # Analysis & Design
 
 ### Advantages of OOP

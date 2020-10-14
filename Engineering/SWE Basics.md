@@ -34,7 +34,7 @@ _Changeability_
   platform for which it was written.
 
 _Invisibility_
-
+  Software has no 1:1 physical manifestation that we can use to *look at a piece of software. This brings challenges in the comprehension of software systems.
 
 ## Activities of software engineering
 

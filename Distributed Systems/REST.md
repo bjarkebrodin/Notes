@@ -12,8 +12,8 @@ of conventions that any developer should be familiar with.
 ## State in distributed systems
 
 Problem with stateful transfers on client-server architecture : 
-scalability is horrible, we would need a thread or some 
-asynchronous process involving context switches for each of the
+scalability is horrible, we would need a thread for each of the 
+clients
 
 We make it scalable by removing the state from a process,
 and instead create a model that relies on all the necessary 

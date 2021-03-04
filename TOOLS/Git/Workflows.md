@@ -38,7 +38,7 @@ for checking whether a branch can be cleanly merged into a
 different branch (versus checking from the branch were merging into)
 
 In case of someone rebasing the commits you depend on, make
-sure to rebase to the new head and NOT `merg`, this will 
+sure to rebase to the new head and NOT `merge`, this will 
 make things slightly smoother. `git pull --rebase` can be 
 useful for this.
 
